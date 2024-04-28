@@ -1,22 +1,22 @@
 
-INSERT INTO regiones (id, nombre) VALUES (1, 'Herramientas Express');
-INSERT INTO regiones (id, nombre) VALUES (2, 'Tornillos Veloz');
-INSERT INTO regiones (id, nombre) VALUES (3, 'Tornillos y Tuercas SE');
-INSERT INTO regiones (id, nombre) VALUES (4, 'Pinturas PinturaPlus');
-INSERT INTO regiones (id, nombre) VALUES (5, 'Plomería Aquatec');
+INSERT INTO proveedores (id, nombre) VALUES (1, 'Herramientas Express');
+INSERT INTO proveedores (id, nombre) VALUES (2, 'Tornillos Veloz');
+INSERT INTO proveedores (id, nombre) VALUES (3, 'Tornillos y Tuercas SE');
+INSERT INTO proveedores (id, nombre) VALUES (4, 'Pinturas PinturaPlus');
+INSERT INTO proveedores (id, nombre) VALUES (5, 'Plomería Aquatec');
 
 
-/* Populate tabla clientes */
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(1, 'Martillo', 'Black & Decker', '11', '2018-01-01');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(2, 'Destornillador', 'Stanley', '4', '2018-01-02');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(3, 'Taladro', 'Bosch', '21', '2018-01-03');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(4, 'Pintura', 'Sherwin-Williams', '14', '2018-01-04');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(5, 'Clavos', 'Senco', '43', '2018-02-01');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(4, 'Cinta de aislar', 'Durex', '40', '2019-04-11');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(1, 'Cinta métrica', 'Stanley', '42', '2018-02-18');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(1, 'Llave inglesa', 'Facom', '15', '2018-02-28');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(3, 'Pala', 'Tramontina', '23', '2018-03-03');
-INSERT INTO clientes (region_id,nombre, apellido, email, create_at) VALUES(5, 'Sierra eléctrica', 'Makita', '3', '2018-03-04');
+/* Populate tabla productos */
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(1, 'Martillo', 'Black & Decker', '11', '2018-01-01');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(2, 'Destornillador', 'Stanley', '4', '2018-01-02');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(3, 'Taladro', 'Bosch', '21', '2018-01-03');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(4, 'Pintura', 'Sherwin-Williams', '14', '2018-01-04');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(5, 'Clavos', 'Senco', '43', '2018-02-01');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(4, 'Cinta de aislar', 'Durex', '40', '2019-04-11');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(1, 'Cinta métrica', 'Stanley', '42', '2018-02-18');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(1, 'Llave inglesa', 'Facom', '15', '2018-02-28');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(3, 'Pala', 'Tramontina', '23', '2018-03-03');
+INSERT INTO productos (proveedor_id,nombre, marca, cantidad, create_at) VALUES(5, 'Sierra eléctrica', 'Makita', '3', '2018-03-04');
 
 
 /* Creamos algunos usuarios con sus roles */

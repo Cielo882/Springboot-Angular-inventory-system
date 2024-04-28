@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "regiones")
-public class Region implements Serializable {
+@Table(name = "proveedores")
+public class Proveedor implements Serializable {
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +24,15 @@ public class Region implements Serializable {
 	private String nombre;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "region")
-    private List<Cliente> clientes;
+	@OneToMany(mappedBy = "proveedor")
+    private List<Producto> productos;
 
-	public List<Cliente> getClientes() {
-		return clientes;
+	public List<Producto> getProductos() {
+		return productos;
 	}
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 
 	public Long getId() {

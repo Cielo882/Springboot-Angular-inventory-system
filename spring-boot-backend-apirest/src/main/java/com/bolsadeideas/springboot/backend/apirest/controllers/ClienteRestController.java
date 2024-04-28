@@ -34,8 +34,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bolsadeideas.springboot.backend.apirest.models.entity.Cliente;
-import com.bolsadeideas.springboot.backend.apirest.models.entity.Region;
+import com.bolsadeideas.springboot.backend.apirest.models.entity.Producto;
+import com.bolsadeideas.springboot.backend.apirest.models.entity.Proveedor;
 import com.bolsadeideas.springboot.backend.apirest.models.services.IClienteService;
 import com.bolsadeideas.springboot.backend.apirest.models.services.IUploadFileService;
 
@@ -53,12 +53,12 @@ public class ClienteRestController {
 	// private final Logger log = LoggerFactory.getLogger(ClienteRestController.class);
 
 	@GetMapping("/clientes")
-	public List<Cliente> index() {
+	public List<Producto> index() {
 		return clienteService.findAll();
 	}
 	
 	@GetMapping("/clientes/page/{page}")
-	public Page<Cliente> index(@PathVariable Integer page) {
+	public Page<Producto> index(@PathVariable Integer page) {
 		Pageable pageable = PageRequest.of(page, 4);
 		return clienteService.findAll(pageable);
 	}
@@ -67,30 +67,30 @@ public class ClienteRestController {
 	@GetMapping("/clientes/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		
-		Cliente cliente = null;
+		Producto producto = null;
 		Map<String, Object> response = new HashMap<>();
 		
 		try {
-			cliente = clienteService.findById(id);
+			producto = clienteService.findById(id);
 		} catch(DataAccessException e) {
 			response.put("mensaje", "Error al realizar la consulta en la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		if(cliente == null) {
+		if(producto == null) {
 			response.put("mensaje", "El Producto ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
 	
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/clientes")
-	public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
+	public ResponseEntity<?> create(@Valid @RequestBody Producto producto, BindingResult result) {
 		
-		Cliente clienteNew = null;
+		Producto productoNew = null;
 		Map<String, Object> response = new HashMap<>();
 		
 		if(result.hasErrors()) {
@@ -105,7 +105,7 @@ public class ClienteRestController {
 		}
 		
 		try {
-			clienteNew = clienteService.save(cliente);
+			productoNew = clienteService.save(producto);
 		} catch(DataAccessException e) {
 			response.put("mensaje", "Error al realizar el insert en la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -113,17 +113,17 @@ public class ClienteRestController {
 		}
 		
 		response.put("mensaje", "El Producto ha sido creado con éxito!");
-		response.put("Producto", clienteNew);
+		response.put("Producto", productoNew);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/clientes/{id}")
-	public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Long id) {
+	public ResponseEntity<?> update(@Valid @RequestBody Producto producto, BindingResult result, @PathVariable Long id) {
 
-		Cliente clienteActual = clienteService.findById(id);
+		Producto productoActual = clienteService.findById(id);
 
-		Cliente clienteUpdated = null;
+		Producto productoUpdated = null;
 
 		Map<String, Object> response = new HashMap<>();
 
@@ -138,7 +138,7 @@ public class ClienteRestController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}
 		
-		if (clienteActual == null) {
+		if (productoActual == null) {
 			response.put("mensaje", "Error: no se pudo editar, el Producto ID: "
 					.concat(id.toString().concat(" no existe en la base de datos!")));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
@@ -146,13 +146,13 @@ public class ClienteRestController {
 
 		try {
 
-			clienteActual.setApellido(cliente.getApellido());
-			clienteActual.setNombre(cliente.getNombre());
-			clienteActual.setEmail(cliente.getEmail());
-			clienteActual.setCreateAt(cliente.getCreateAt());
-			clienteActual.setRegion(cliente.getRegion());
+			productoActual.setMarca(producto.getMarca());
+			productoActual.setNombre(producto.getNombre());
+			productoActual.setCantidad(producto.getCantidad());
+			productoActual.setCreateAt(producto.getCreateAt());
+			productoActual.setProveedor(producto.getProveedor());
 
-			clienteUpdated = clienteService.save(clienteActual);
+			productoUpdated = clienteService.save(productoActual);
 
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error al actualizar el Producto en la base de datos");
@@ -161,7 +161,7 @@ public class ClienteRestController {
 		}
 
 		response.put("mensaje", "El cliente ha sido actualizado con éxito!");
-		response.put("cliente", clienteUpdated);
+		response.put("cliente", productoUpdated);
 
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
@@ -173,8 +173,8 @@ public class ClienteRestController {
 		Map<String, Object> response = new HashMap<>();
 		
 		try {
-			Cliente cliente = clienteService.findById(id);
-			String nombreFotoAnterior = cliente.getFoto();
+			Producto producto = clienteService.findById(id);
+			String nombreFotoAnterior = producto.getFoto();
 			
 			uploadService.eliminar(nombreFotoAnterior);
 			
@@ -195,7 +195,7 @@ public class ClienteRestController {
 	public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
 		Map<String, Object> response = new HashMap<>();
 		
-		Cliente cliente = clienteService.findById(id);
+		Producto producto = clienteService.findById(id);
 		
 		if(!archivo.isEmpty()) {
 
@@ -208,15 +208,15 @@ public class ClienteRestController {
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			
-			String nombreFotoAnterior = cliente.getFoto();
+			String nombreFotoAnterior = producto.getFoto();
 			
 			uploadService.eliminar(nombreFotoAnterior);
 						
-			cliente.setFoto(nombreArchivo);
+			producto.setFoto(nombreArchivo);
 			
-			clienteService.save(cliente);
+			clienteService.save(producto);
 			
-			response.put("-producto-", cliente);
+			response.put("-producto-", producto);
 			response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
 			
 		}
@@ -243,8 +243,8 @@ public class ClienteRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/clientes/regiones")
-	public List<Region> listarRegiones(){
-		return clienteService.findAllRegiones();
+	public List<Proveedor> listarRegiones(){
+		return clienteService.findAllProveedores();
 	}
 	
 	@GetMapping("/clientes/cantidad-por-region")

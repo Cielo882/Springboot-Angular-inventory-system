@@ -6,22 +6,22 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.bolsadeideas.springboot.backend.apirest.models.entity.Cliente;
-import com.bolsadeideas.springboot.backend.apirest.models.entity.Region;
+import com.bolsadeideas.springboot.backend.apirest.models.entity.Producto;
+import com.bolsadeideas.springboot.backend.apirest.models.entity.Proveedor;
 
 public interface IClienteService {
 
-	public List<Cliente> findAll();
+	public List<Producto> findAll();
 	
-	public Page<Cliente> findAll(Pageable pageable);
+	public Page<Producto> findAll(Pageable pageable);
 	
-	public Cliente findById(Long id);
+	public Producto findById(Long id);
 	
-	public Cliente save(Cliente cliente);
+	public Producto save(Producto producto);
 	
 	public void delete(Long id);
 	
-	public List<Region> findAllRegiones();
+	public List<Proveedor> findAllProveedores();
 	
 	public Map<String, Long> getCantidadClientesPorRegion();
 

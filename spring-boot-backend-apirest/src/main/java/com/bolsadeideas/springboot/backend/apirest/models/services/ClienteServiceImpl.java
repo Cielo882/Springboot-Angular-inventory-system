@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.springboot.backend.apirest.models.dao.IClienteDao;
-import com.bolsadeideas.springboot.backend.apirest.models.entity.Cliente;
-import com.bolsadeideas.springboot.backend.apirest.models.entity.Region;
+import com.bolsadeideas.springboot.backend.apirest.models.entity.Producto;
+import com.bolsadeideas.springboot.backend.apirest.models.entity.Proveedor;
 
 @Service
 public class ClienteServiceImpl implements IClienteService {
@@ -22,26 +22,26 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Cliente> findAll() {
-		return (List<Cliente>) clienteDao.findAll();
+	public List<Producto> findAll() {
+		return (List<Producto>) clienteDao.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Cliente> findAll(Pageable pageable) {
+	public Page<Producto> findAll(Pageable pageable) {
 		return clienteDao.findAll(pageable);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Cliente findById(Long id) {
+	public Producto findById(Long id) {
 		return clienteDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
-	public Cliente save(Cliente cliente) {
-		return clienteDao.save(cliente);
+	public Producto save(Producto producto) {
+		return clienteDao.save(producto);
 	}
 
 	@Override
@@ -52,8 +52,8 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Region> findAllRegiones() {
-		return clienteDao.findAllRegiones();
+	public List<Proveedor> findAllProveedores() {
+		return clienteDao.findAllProveedores();
 	}
 
 	@Override
