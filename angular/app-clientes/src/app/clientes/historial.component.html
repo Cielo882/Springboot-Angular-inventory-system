@@ -1,0 +1,7 @@
+<div class="historial-container">
+  <h2 class="historial-title">Historial de mensajes</h2>
+  <button *ngIf="authService.hasRole('ROLE_ADMIN')" (click)="limpiarHistorial()">Limpiar historial</button> <!-- Movido el botón aquí -->
+  <ul class="mensaje-lista">
+      <li class="mensaje-item" *ngFor="let mensaje of mensajes">{{ mensaje }}</li>
+  </ul>
+</div>

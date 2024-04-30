@@ -1,0 +1,7 @@
+.footer {
+  position: fixed; /* Cambiado a fixed */
+  bottom: 0; /* Se mantiene en la parte inferior */
+  left: 0; /* Asegura que esté alineado con el borde izquierdo */
+  width: 100%; /* Ocupa todo el ancho */
+  height: 45px;
+}

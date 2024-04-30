@@ -1,0 +1,21 @@
+.mensaje-lista {
+  list-style-type: none;
+  padding: 0;
+}
+
+.mensaje-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.mensaje-item {
+  animation: fade-out 3s forwards; /* Aplicar la animación al mensaje */
+}

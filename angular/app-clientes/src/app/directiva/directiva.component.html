@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  
+  <div class="card">
+    <div class="card-header">
+      Grafico proveedores
+    </div>
+
+    <ul class="list-group" *ngIf="habilitar == true">
+      <li class="list-group-item" *ngFor="let curso of listaCurso">{{ curso }}</li>
+
+      <!-- Utiliza keyvalue para iterar sobre el objeto proveedores -->
+      <li *ngFor="let proveedor of proveedores | keyvalue">
+        <p>{{ proveedor.key }} - Cantidad de clientes: {{ proveedor.value.clientes }}</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8"> <!-- Utiliza un tamaño de columna mediano para el gráfico en pantallas grandes -->
+      <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+</div>

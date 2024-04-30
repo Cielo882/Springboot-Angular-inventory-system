@@ -1,0 +1,30 @@
+/* Estilos para el contenedor del historial */
+.historial-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  /* Estilos para el título del historial */
+  .historial-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para la lista de mensajes */
+  .mensaje-lista {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Estilos para cada elemento de mensaje */
+  .mensaje-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  
